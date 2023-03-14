@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <script>
+
+        x = prompt("Введите x");
+        y = prompt("Введите y");
+        
+        z = (x+(y/2))/(2*(Math.abs(x+y)))-Math.sqrt((Math.pow(x,2)*y)/(5+y), 2)
+
+        alert(z)
+
+        A = []
+
+        for (let i = 1; i<=10; i++) {
+            A.push(Math.floor(Math.random() * (20 - 10) + 10))
+        }
+
+        console.log(A)
+
+        A.forEach((element, i) => {
+            if (String(element).indexOf("2") == 1) {
+                console.log(i)
+            }
+        });
+
+        months = ['январь', 'февраль', 'март', 'апрель','май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'];
+        days = ['понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота', 'воскресенье'];
+        d = new Date;
+        d.setFullYear(d.getFullYear() + 1);
+        d.setMonth(8);
+        d.setDate(1);
+        alert(`${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()} ${days[d.getDay()]}`);
+
+        str = "ааааааоооооооооооооооооооооааааааааааааааааааааааааа"
+        o = 0
+        a = 0
+
+        for (let i = 0; i <= str.length; i++) {
+            if (str[i] == 'о') o += 1
+            if (str[i] == 'а') a += 1
+        }
+        res = o > a ? 'o' : 'a'
+        alert(res)
+    </script>
+</body>
+</html>
