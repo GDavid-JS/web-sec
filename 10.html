@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="slider">
+        <div class="wrap">
+            <div class="img"></div>
+            <div class="buttons">
+                <button class="back">назад</button>
+                <button class="forward">вперед</button>
+            </div>
+        </div>
+    </div>
+    <div class="text">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam tempora atque quia odit delectus maxime dolore exercitationem cupiditate debitis rem! Similique perspiciatis quos magnam nisi sint expedita neque cum eius vel sapiente nemo voluptas placeat tempore fugiat, ducimus, earum beatae, at illo id totam repellendus. Quae necessitatibus perspiciatis assumenda id veniam ex accusamus provident distinctio, sequi culpa, natus reprehenderit laborum saepe vero rem nobis ducimus officia earum recusandae. Reiciendis aliquam esse consectetur commodi alias laborum a labore deleniti, cumque dicta libero earum, sunt perspiciatis sit officia. Facilis suscipit nulla quae. Incidunt repudiandae voluptatem nesciunt officia explicabo consequuntur autem perspiciatis, vero assumenda in amet magnam! Ad aliquid rem placeat quasi labore voluptates autem, nemo maxime beatae vel eveniet, ratione quaerat id minima exercitationem dignissimos, omnis soluta vitae aperiam! Perferendis, laboriosam sit culpa minima modi deserunt nemo explicabo sunt corporis nam, error eligendi eos? Ipsam commodi sapiente vel consectetur consequuntur rem nisi debitis sed, vitae illum rerum omnis beatae provident delectus aperiam ab dignissimos adipisci ratione vero eos deserunt quas, magni et animi. Consequuntur, hic ex? Nisi, ipsa fugiat iusto quidem porro similique, deleniti quos iste maiores eius eveniet dolorem nobis excepturi ratione ipsam facilis rem esse voluptas alias recusandae molestias temporibus, unde illum? Rerum error provident repellendus commodi nulla aliquid vitae. Perferendis sed molestiae inventore sit sint provident ad nam autem. Fuga veritatis tempora, sequi amet non blanditiis doloribus fugiat commodi culpa voluptates exercitationem eaque deleniti quaerat provident adipisci qui. Minima officiis asperiores adipisci dolor provident quam, iste numquam excepturi blanditiis nostrum iure voluptatem saepe aliquam nesciunt eligendi repudiandae voluptatum magnam aut assumenda a possimus quas inventore. Quaerat, consequuntur sunt vel ab doloremque excepturi quibusdam voluptates ipsa architecto delectus, rem nihil accusamus ea asperiores illo optio nulla, enim facere velit incidunt minima? Necessitatibus, temporibus! Corrupti consequatur fugit, cupiditate a quibusdam laboriosam!
+    </div>
+    <script>
+        let img = document.querySelector('.img')
+        let back = document.querySelector('.back')
+        let forward = document.querySelector('.forward')
+        let slider = document.querySelector('.slider')
+
+        let setimg = (num) =>
+            img.style.backgroundImage = `url(${images[num]})`
+
+        let images = [
+            "./images/1.jpg",
+            "./images/2.jpg",
+            "./images/3.jpg",
+        ]
+        let num = 0
+
+        setimg(num)
+
+        forward.addEventListener('click', () => {
+            if (num + 1 < images.length)
+                setimg(++num)
+        })
+
+        back.addEventListener('click', () => {
+            if (num - 1 >= 0)
+                setimg(--num)
+        })
+
+        let date1 = new Date('03/06/2003')
+        let dateelement = document.createElement('div')
+        dateelement.innerHTML = date1
+        slider.after(dateelement)
+
+        let text = document.querySelector('.text')
+
+        text.addEventListener('mouseover', () => {
+            new Promise((resolve) => {
+                let px = parseInt(window.getComputedStyle(text, null).getPropertyValue("font-size"))
+                text.style.fontSize = '20px'
+                resolve(px)
+            })
+            .then((px) => {
+                text.addEventListener('mouseout', () => {
+                    text.style.fontSize = px + 'px'
+                })
+            })
+        })
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.keyCode === 89) {
+                let result = Math.round((new Date().getTime() - new Date(`03/06/${new Date().getFullYear()}`).getTime()) / 86400000)
+                dateelement.style.textTransform = 'lowercase'
+                dateelement.innerHTML = date1 + " <span style='font-size: 15px;'>" + result + ' дней</span>'
+                alert(result + ' дней')
+            } else if (e.keyCode === 76) {
+                px = parseInt(window.getComputedStyle(text, null).getPropertyValue("font-size"))
+                text.style.fontSize = ++px + 'px'
+            } else if (e.keyCode === 85) {
+                px = parseInt(window.getComputedStyle(text, null).getPropertyValue("font-size"))
+                text.style.fontSize = --px + 'px'
+            }
+        })
+        // lowercase
+
+    </script>
+    <style>
+        .slider {
+            display: flex;
+            width: 100%;
+            height: 500px;
+            justify-content: center;
+            align-items: center;
+        }
+        .img {
+            width: 300px;
+            height: 300px;
+            transform: scale(1);
+            background: center center no-repeat fixed;
+            background-size: cover;
+            margin-bottom: 30px;
+        }
+        .img:hover {
+            transform: scale(1.1);
+        }
+
+        .text:hover {
+            color: red;
+        }
+    </style>
+</body>
+</html>

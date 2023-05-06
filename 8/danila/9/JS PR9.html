@@ -1,0 +1,52 @@
+<head>
+    <body>
+        <div class="wrapper">
+            <div class="img1" id="im1"></div>
+            <div class="img2" id="im2"></div>
+        </div>
+        <script type="text/JavaScript">
+            var interval;
+            var n = 5;
+            var width = document.documentElement.clientWidth;
+            var imgWidth = 100;
+            var curPosX = width/2-imgWidth;
+            var img1 = document.getElementById("im2"); 
+            interval = setInterval(left, 10);
+            function left(){
+                img1.style.left = (curPosX -= n) + "px";  
+                if (curPosX <= 0){
+                    clearInterval(interval);
+                    interval = setInterval(right, 10); 
+                }
+            }
+            function right (){
+                img1.style.left = (curPosX += n) + "px";
+                if (curPosX >= width/2-imgWidth){
+                    clearInterval(interval);
+                }
+            }
+        </script>
+        <style>
+            html, body {
+                margin: 0;
+                padding: 0;
+            }
+            .wrapper {
+                width: 50%;
+                position: relative;
+            }
+            .img1 {
+                background-color: rgb(182, 36, 0);
+                width: 100%;
+                height: 100%;
+            }
+            .img2 {
+                background-color: rgb(0, 158, 0);
+                position: absolute;
+                top: 0;
+                width: 100px;
+                height: 100px;
+            }
+        </style>
+    </body>
+</head>
