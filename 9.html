@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>9</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="img1"></div>
+        <div class="img2"></div>
+    </div>
+
+    <script>
+        img2 = document.querySelector('.img2')
+        // img2.left = `${x}%`
+        new Promise((resolve, reject) => {
+            x = 0
+            timeOut = setInterval(() => {
+                img2.style.left = `${++x}%`
+                if (x == 100) {
+                    clearInterval(timeOut);
+                    resolve()
+                }
+            }, 10)
+        })
+        .then(() => new Promise((resolve, reject) => {
+            y=0
+            timeOut = setInterval(() => {
+                img2.style.top = `${++y}%`
+                if (y == 50) {
+                    clearInterval(timeOut);
+                    resolve()
+                }
+            }, 10)
+        }))
+        .then(() => new Promise((resolve, reject) => {
+            x = 100
+            timeOut = setInterval(() => {
+            img2.style.left = `${--x}%`
+                if (x == 0) {
+                    clearInterval(timeOut);
+                    resolve()
+                }
+            }, 10)
+        }))
+        .then(() => new Promise((resolve, reject) => {
+            y=50
+            timeOut = setInterval(() => {
+                img2.style.top = `${++y}%`
+                if (y == 100) {
+                    clearInterval(timeOut);
+                    resolve()
+                }
+            }, 10)
+        }))
+        .then(() => new Promise((resolve, reject) => {
+            x=0
+            timeOut = setInterval(() => {
+                img2.style.left = `${++x}%`
+                if (x == 100) {
+                    clearInterval(timeOut);
+                    resolve()
+                }
+            }, 10)
+        }))
+        
+        
+
+    </script>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+        .wrapper {
+            width: 50%;
+            position: relative;
+        }
+        .img1 {
+            background-color: black;
+            width: 100%;
+            height: 500px;
+        }
+        .img2 {
+            background-color: rgb(255, 0, 0);
+            position: absolute;
+            top: 0;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</body>
+</html>

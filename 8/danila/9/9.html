@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>JS animation</title>
+ <style>
+  body {
+   margin: 0;
+   padding: 0;
+   overflow: hidden;
+  }
+
+  #bg-img {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 50%;
+   height: 100%;
+   z-index: -1;
+  }
+
+  #moving-img {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100px;
+   height: 100px;
+   background-image: url('4.png');
+   background-repeat: no-repeat;
+   background-size: contain;
+   z-index: 1;
+  }
+ </style>
+</head>
+<body>
+ <img id="bg-img" src="background.jpg">
+ <div id="moving-img"></div>
+
+ <script>
+  var movingImg = document.getElementById('moving-img');
+  var x = 0, y = 0, dirX = 1, dirY = 1;
+
+  function moveImg() {
+   x += dirX * 5;
+   y += dirY * 5;
+
+   if (x + movingImg.offsetWidth >= window.innerWidth || x <= 0) {
+    dirX *= -1;
+   }
+
+   if (y + movingImg.offsetHeight >= window.innerHeight || y <= 0) {
+    dirY *= -1;
+   }
+
+   movingImg.style.left = x + 'px';
+   movingImg.style.top = y + 'px';
+
+   requestAnimationFrame(moveImg);
+  }
+
+  moveImg();
+ </script>
+</body>
+</html>
