@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
 </head>
 <body>
     <div class="slider">
@@ -52,27 +53,29 @@
         dateelement.innerHTML = date1
         slider.after(dateelement)
 
+
         let text = document.querySelector('.text')
 
         text.addEventListener('mouseover', () => {
-            new Promise((resolve) => {
-                let px = parseInt(window.getComputedStyle(text, null).getPropertyValue("font-size"))
-                text.style.fontSize = '20px'
-                resolve(px)
-            })
-            .then((px) => {
-                text.addEventListener('mouseout', () => {
-                    text.style.fontSize = px + 'px'
-                })
+            let px = parseInt(window.getComputedStyle(text, null).getPropertyValue("font-size"))
+            text.style.fontSize = '20px'
+            
+            text.addEventListener('mouseout', () => {
+                text.style.fontSize = px + 'px'
             })
         })
+
+
         
         document.addEventListener('keydown', (e) => {
             if (e.keyCode === 89) {
-                let result = Math.round((new Date().getTime() - new Date(`03/06/${new Date().getFullYear()}`).getTime()) / 86400000)
+                let current = new Date().toISOString().split('T')[0]
+                let b = dayjs('2023-06-03')
+                let result = b.diff(current, 'day') + "." + b.diff(current, 'month') + "." + b.diff(current, 'year')
+
                 dateelement.style.textTransform = 'lowercase'
-                dateelement.innerHTML = date1 + " <span style='font-size: 15px;'>" + result + ' дней</span>'
-                alert(result + ' дней')
+                // dateelement.innerHTML = date1 + " <span style='font-size: 15px;'>" + result + ' дней</span>'
+                alert(result)
             } else if (e.keyCode === 76) {
                 px = parseInt(window.getComputedStyle(text, null).getPropertyValue("font-size"))
                 text.style.fontSize = ++px + 'px'
